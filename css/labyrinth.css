@@ -4,6 +4,7 @@ body {
 }
 
 #game {
+	position: relative;
 	width: 465px;
 	margin-top: 70px;
 	margin-left: auto;
@@ -11,7 +12,7 @@ body {
 	background:red;
 }
 
-#game #lab_table {
+#game #lab-table {
 	margin-left: auto;
 	margin-right: auto;
 	border: 3px solid black;
@@ -19,7 +20,7 @@ body {
 	border-collapse:collapse;
 }
 
-#game .lab_cell {
+#game .lab-cell {
 	height: 20px;
 	width: 20px;
 	border: 1px solid black;
@@ -28,8 +29,9 @@ body {
 }
 
 #game #hud {
-	height: 80px;
+	height: 70px;
 	border: 3px solid black;
+	padding: 10px;
 
 	font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
 	font-size: 15;
@@ -49,22 +51,22 @@ body {
 	margin-right: 5px;
 }
 
-#game #hud .hud_option{
+#game #hud .hud-option{
 	padding: 3px;
 	border-radius: 5px;
 	border: 1px solid #6d2000;
 	background: #6E4509;
+
+	box-shadow: 0px 0px 3px black;
 }
 
-#game #hud #hp_display, #gold_display {
-	display: inline-block;
+#game #hud #hp-display, #gold-display {
 	float: left;
-	margin-top: 5px;
-	margin-left: 10px;
+	margin-bottom: 5px;
 	width:230px;
 }
 
-#game #hud #hp_bar {
+#game #hud #hp-bar {
 	display: inline-block;
 	vertical-align: middle;
 	height: 20px;
@@ -74,7 +76,7 @@ body {
 }
 
 /* current hp */
-#game #hud #hp_bar #hp {
+#game #hud #hp-bar #hp {
 	float: left;
 	width: 70%;
 	height: 100%;
@@ -85,7 +87,7 @@ body {
 }
 
 /* hp missing */
-#game #hud #hp_bar #filler {
+#game #hud #hp-bar #filler {
 	float: right;
 	height: 100%;
 	width: 29%;
@@ -93,34 +95,120 @@ body {
 }
 
 /* gold counter */
-#game #hud #gold_display span {
+#game #hud #gold-display span {
 	float: left;
 	width: 25px;
 	margin-right: 5px;
 }
 
-#game #hud #gold_display img {
+#game #hud #gold-display img {
 	width: 20px;
 	height: 20px;
 }
 
-#game #hud #menu_button {
-	position: relative;
-	top: -30px;
+#game #hud #menu-button {
 	float: right;
 
 	width: 120px;
 	height: 50px;
 	margin-right: 10px;
+	cursor: default;
 
 	text-align: center;
+
 }
 
-#game #hud #menu_button span {
+#game #hud #menu-button span {
 	display: inline-block;
 	height: 100%;
 	width: 100%;
 
 	line-height: 50px;
 	font-size: 25px;
+}
+
+#game #hud #menu {
+	position: absolute;
+	top: 5%;
+	left:50%;
+	margin-left:-128px;
+	width: 250px;
+
+	border-radius: 15px;
+	box-shadow: 0px 0px 5px 3px black;
+}
+
+#game #hud #menu ul {
+	text-align: center;
+
+	list-style-type: none;
+	margin: 5px;
+	padding: 0;
+
+	font-size: 24px;
+	text-shadow: 0px 0px 10px black;
+
+	border: 1px solid black;
+	border-radius: 10px;
+	box-shadow: 0px 0px 5px 0px black;
+}
+
+#game #hud #menu li {
+	margin-bottom: 15px;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+#game #hud #menu li:first-child {
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+#game #hud #menu li:last-child {
+	margin-bottom: 0px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+#game #hud #menu li:hover {
+	background: #81530D;
+}
+
+#game #hud #menu #menu-exit img{
+	width: 20px;
+	margin-top: 3px;
+	margin-left: 90%;
+}
+
+
+#game #table-mask {
+	position: absolute;
+	top: 0;
+	background: black;
+	width: 100%;
+	height: 100%;
+}
+
+#game .mask-active {
+	visibility: visible;
+	z-index: 1;
+	animation: table_hide 0.5s;
+	-webkit-animation: table_hide 0.5s;
+	opacity: 0.5;
+}
+
+#game .mask-inactive {
+	z-index: -1;
+	visibility: hidden;
+}
+
+#game #hud .menu-active {
+	visibility: visible;
+	z-index: 10;
+	animation: menufadein 0.5s;
+	-webkit-animation: menufadein 0.5s;
+}
+
+#game #hud .menu-inactive {
+	visibility: hidden;
+	z-index: -10;
 }
