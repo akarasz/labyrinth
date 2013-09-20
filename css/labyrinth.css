@@ -1,0 +1,126 @@
+body {
+	background: #dddddd;
+	margin: 0;
+}
+
+#game {
+	width: 465px;
+	margin-top: 70px;
+	margin-left: auto;
+	margin-right: auto;
+	background:red;
+}
+
+#game #lab_table {
+	margin-left: auto;
+	margin-right: auto;
+	border: 3px solid black;
+
+	border-collapse:collapse;
+}
+
+#game .lab_cell {
+	height: 20px;
+	width: 20px;
+	border: 1px solid black;
+
+	background: white;
+}
+
+#game #hud {
+	height: 80px;
+	border: 3px solid black;
+
+	font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-size: 15;
+	font-weight: bold;
+	color: white;
+
+	background: #C79E4B;
+}
+
+#game #hud .label {
+	display: inline-block;
+	float: left;
+
+	line-height: 24px;
+	width: 45px;
+
+	margin-right: 5px;
+}
+
+#game #hud .hud_option{
+	padding: 3px;
+	border-radius: 5px;
+	border: 1px solid #6d2000;
+	background: #6E4509;
+}
+
+#game #hud #hp_display, #gold_display {
+	display: inline-block;
+	float: left;
+	margin-top: 5px;
+	margin-left: 10px;
+	width:230px;
+}
+
+#game #hud #hp_bar {
+	display: inline-block;
+	vertical-align: middle;
+	height: 20px;
+	width: 150px;
+
+	border: 2px solid black;
+}
+
+/* current hp */
+#game #hud #hp_bar #hp {
+	float: left;
+	width: 70%;
+	height: 100%;
+	background: red;
+
+	border-right: 1px solid #dddddd;
+
+}
+
+/* hp missing */
+#game #hud #hp_bar #filler {
+	float: right;
+	height: 100%;
+	width: 29%;
+	background: white;
+}
+
+/* gold counter */
+#game #hud #gold_display span {
+	float: left;
+	width: 25px;
+	margin-right: 5px;
+}
+
+#game #hud #gold_display img {
+	width: 20px;
+	height: 20px;
+}
+
+#game #hud #menu_button {
+	position: relative;
+	top: -30px;
+	float: right;
+
+	width: 120px;
+	height: 50px;
+	margin-right: 10px;
+
+	text-align: center;
+}
+
+#game #hud #menu_button span {
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+
+	line-height: 50px;
+	font-size: 25px;
+}
