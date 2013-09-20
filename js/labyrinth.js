@@ -3,7 +3,6 @@ window.onload = function() {
 
 	var default_class = "hud-option";
 	var a = $("#menu-button").onclick=function(){
-		console.log("cucc");
 		$("#menu").className = default_class + " menu-active";
 		$("#table-mask").className = "mask-active";
 	};
