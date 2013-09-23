@@ -27,6 +27,7 @@ window.onload = function() {
 	/* test sector */
 	var map_width = 20;
 	var map_height = 20;
+	var starting_point = [1, 1];
 
 	
 	/* creating table, each cell with its own id and the class "lab-cell" 
@@ -43,15 +44,31 @@ window.onload = function() {
 			"id" : k + "_" + i,
 			"class" : "lab-cell"
 			});
-			if( k == map_height / 2 && i == map_width / 2 ){
-				$td.addClass("player-pos");
-			}
 			$tr.append( $td );
 		}
 		$table.append( $tr );
 	}
 	$("#table-container").append($table);
 
+
+	/* shifting the table to center the player's position */
+	/** calculating cell-size, including border and padding **/
+	var c = $(".lab-cell");
+	var cell_dim = [c.height() + parseInt(c.css("border"))*2 + parseInt(c.css("padding"))*2,
+					c.width() + parseInt(c.css("border"))*2 + parseInt(c.css("padding"))*2];
+
+	/** calculating the cell that will be in the center of the playfield **/
+	var center_idx = [ (($("#table-container").height() / cell_dim[0]) / 2 ) + 0.5,
+						(($("#table-container").width() / cell_dim[1]) / 2 ) + 0.5 ];
+	function shiftTable(){
+		var shift_top, shift_left;
+		shift_top = parseInt( ( $(".player-pos").parent().index() - center_idx[0] + 1 )*cell_dim[0] );
+		shift_left = parseInt( ( $(".player-pos").index() - center_idx[1] +1 )*cell_dim[1] );
+		$("#lab-table").css({
+			"top" : -shift_top + "px",
+			"left" : -shift_left + "px"
+		});
+	}
 	/* moves the player indicator from one cell to another
 		params:
 			@to: future coordinates of player: Array= [row, column]
@@ -59,6 +76,7 @@ window.onload = function() {
 	function movePlayer(to){
 		$(".player-pos").removeClass("player-pos");
 		$("#" + to[0] + "_" + to[1]).addClass("player-pos");
+		shiftTable();
 	}
 
 
@@ -89,4 +107,6 @@ window.onload = function() {
 				break;
 		}
 	});
+
+	movePlayer(starting_point);
 };
