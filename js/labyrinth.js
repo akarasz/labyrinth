@@ -24,15 +24,14 @@ window.onload = function() {
 	});
 
 	
-	/* test sector */
+	/* init data */
 	var map_width = 20;
 	var map_height = 20;
 	var starting_point = [1, 1];
+	/* end of init data */
 
 	
-	/* creating table, each cell with its own id and the class "lab-cell" 
-		cell id format: "#row_column"
-	*/
+	/* creating table, each cell with a class "lab-cell" */
 	var $table = $( "<table />", {
 		"id" : "lab-table"
 	} );
@@ -41,7 +40,6 @@ window.onload = function() {
 		var $tr = ( $( "<tr />" ) );
 		for( var i = 0; i < map_width; i++ ){
 			var $td = $( "<td />", {
-			"id" : k + "_" + i,
 			"class" : "lab-cell"
 			});
 			$tr.append( $td );
@@ -75,38 +73,58 @@ window.onload = function() {
 	*/
 	function movePlayer(to){
 		$(".player-pos").removeClass("player-pos");
-		$("#" + to[0] + "_" + to[1]).addClass("player-pos");
+		$("#lab-table tr").eq(to[0]).find("td").eq(to[1]).addClass("player-pos");
 		shiftTable();
 	}
 
 
 	$( document ).keydown( function(event) {
-		var coord = $(".player-pos").attr("id").split("_");
-		coord[0] = +coord[0];	/* !!! might be a simpler solution !!! */
-		coord[1] = +coord[1];
+		var coord = [ $(".player-pos").parent().index(), $(".player-pos").index() ];
 		switch(event.which){
 			/* left arrow pressed */
 			case 37:
-				var new_coord = [coord[0], coord[1] - 1 ];
-				movePlayer( new_coord );
+				if( coord[1] - 1 < 0 ){
+					new_coord = coord;
+				}
+				else{
+					var new_coord = [coord[0], coord[1] - 1 ];
+					movePlayer( new_coord );
+				}
 				break;
 			/* up arrow pressed */
 			case 38:
-				var new_coord = [coord[0] - 1, coord[1] ];
-				movePlayer( new_coord );
+				if( coord[0] - 1 < 0 ){
+					new_coord = coord;
+				}
+				else{
+					var new_coord = [coord[0] - 1, coord[1] ];
+					movePlayer( new_coord );
+				}
 				break;
 			/* right arrow pressed */
 			case 39:
-				var new_coord = [coord[0], coord[1] + 1 ];
-				movePlayer( new_coord );
+				if( coord[1] + 1 >= map_width ){
+					new_coord = coord;
+				}
+				else{
+					var new_coord = [coord[0], coord[1] + 1 ];
+					movePlayer( new_coord );
+				}
 				break;
 			/* down arrow pressed */
 			case 40:
-				var new_coord = [coord[0] + 1, coord[1] ];
-				movePlayer( new_coord );
+				if( coord[0] + 1 >= map_height ){
+					new_coord = coord;
+				}
+				else{
+					var new_coord = [coord[0] + 1, coord[1] ];
+					movePlayer( new_coord );
+				}
 				break;
 		}
 	});
 
+
+	/* init */
 	movePlayer(starting_point);
 };
